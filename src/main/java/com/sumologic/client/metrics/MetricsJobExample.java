@@ -55,8 +55,11 @@ public class MetricsJobExample {
 
     // If successful, we will have gotten back
     // a json with all time series. We print the meta data
-
+    
     for (Metric m : metricsJob) {
+      for (double d: m.getValues()) {
+        System.out.println(d);
+      }
       System.out.println(m.getDimensions());
     }
     System.out.println(metricsJob.getStartTime());

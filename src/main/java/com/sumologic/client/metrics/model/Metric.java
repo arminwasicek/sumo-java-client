@@ -2,11 +2,12 @@ package com.sumologic.client.metrics.model;
 
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Metric {
   private DateTime[] timestamps;
-  private double[] values;
+  private ArrayList<Double> values;
   private HashMap<String, String> dimensions = new HashMap<>();
 
   public DateTime[] getTimestamps() {
@@ -16,10 +17,11 @@ public class Metric {
     this.timestamps = timestamps;
   }
 
-  public double[] getValues() {
+  public ArrayList<Double> getValues() {
     return values;
   }
-  public void setValues(double[] values) {
+
+  public void setValues(ArrayList<Double> values) {
     this.values = values;
   }
 

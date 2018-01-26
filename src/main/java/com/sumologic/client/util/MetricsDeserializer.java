@@ -9,6 +9,8 @@ import com.sumologic.client.metrics.model.CreateMetricsJobResponse;
 import com.sumologic.client.metrics.model.Metric;
 import org.joda.time.DateTime;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MetricsDeserializer extends StdDeserializer<CreateMetricsJobResponse> {
@@ -66,14 +68,12 @@ public class MetricsDeserializer extends StdDeserializer<CreateMetricsJobRespons
     return timestamps;
   }
 
-  private double[] parseValues(JsonNode metric) {
+  private ArrayList<Double> parseValues(JsonNode metric) {
     JsonNode value = metric.findValue("value");
-    double[] values = new double[value.size()];
-    int idx =0;
+    ArrayList<Double> values = new ArrayList<>(value.size());
 
     for (JsonNode v : value) {
-      values[idx] = v.asDouble();
-      idx++;
+      values.add(v.asDouble());
     }
     return values;
   }
