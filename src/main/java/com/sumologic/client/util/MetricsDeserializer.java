@@ -39,7 +39,7 @@ public class MetricsDeserializer extends StdDeserializer<CreateMetricsJobRespons
       Metric m = new Metric();
       m.setDimensions(parseDimensions(v));
       m.setTimestamps(timestamps);
-      m.setValues(parseValues(v));
+      m.setValues(parseValues(v.path("datapoints")));
       metricsResponse.addMetric(m);
     }
 
