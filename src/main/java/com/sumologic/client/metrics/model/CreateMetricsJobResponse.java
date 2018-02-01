@@ -145,4 +145,40 @@ public final class CreateMetricsJobResponse implements Iterable<Metric> {
   public Iterator<Metric> iterator() {
     return metrics.iterator();
   }
+
+  /**
+   * Returns the number of all metrics in the response.
+   *
+   * @return Number of  all metrics in the response.
+   */
+  public int getMetricsNum() {
+    return metrics.size();
+  }
+
+  public int getMinMetricLength() {
+    if (getMetricsNum() > 0) {
+      int minLength = Integer.MAX_VALUE;
+      for (Metric m: this) {
+        if (m.getValues().size() < minLength) {
+          minLength = metrics.size();
+        }
+      }
+      return minLength;
+    }
+    return 0;
+  }
+
+  public int getMaxMetricLength() {
+    if (getMetricsNum() > 0) {
+      int maxLength = Integer.MIN_VALUE;
+      for (Metric m: this) {
+        if (m.getValues().size() > maxLength) {
+          maxLength = metrics.size();
+        }
+      }
+      return maxLength;
+    }
+    return 0;
+  }
+
 }

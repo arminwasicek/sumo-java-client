@@ -33,14 +33,10 @@ public class MetricsDeserializer extends StdDeserializer<CreateMetricsJobRespons
     JsonNode startTime = root.path("queryInfo").path("startTime");
     JsonNode endTime = root.path("queryInfo").path("endTime");
 
-    DateTime[] timestamps = null;
     for (JsonNode v : results) {
-      if (timestamps == null) {
-        timestamps = parseTimestamps(v);
-      }
       Metric m = new Metric();
       m.setDimensions(parseDimensions(v));
-      m.setTimestamps(timestamps);
+      m.setTimestamps(parseTimestamps(v));
       m.setValues(parseValues(v.path("datapoints")));
       metricsResponse.addMetric(m);
     }
@@ -51,7 +47,6 @@ public class MetricsDeserializer extends StdDeserializer<CreateMetricsJobRespons
     metricsResponse.setEndTime(endTime.asLong());
     metricsResponse.setError(error.toString());
     metricsResponse.setErrorMessage(errorMessage.toString());
-
 
     return metricsResponse;
   }
