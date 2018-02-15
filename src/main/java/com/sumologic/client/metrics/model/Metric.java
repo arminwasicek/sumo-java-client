@@ -36,6 +36,8 @@ public class Metric {
     return dimensions.get(key);
   }
 
+  private HashMap<String, String> getDimensionsDict() { return dimensions; }
+
   public String getDimensions() {
     StringBuffer sb = new StringBuffer();
     dimensions.forEach((k,v) -> sb.append("(").append(k).append(", ").append(v).append("), "));
