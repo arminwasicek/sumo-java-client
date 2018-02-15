@@ -36,7 +36,7 @@ public class Metric {
     return dimensions.get(key);
   }
 
-  private HashMap<String, String> getDimensionsDict() { return dimensions; }
+  public HashMap<String, String> getDimensionsDict() { return dimensions; }
 
   public String getDimensions() {
     StringBuffer sb = new StringBuffer();
