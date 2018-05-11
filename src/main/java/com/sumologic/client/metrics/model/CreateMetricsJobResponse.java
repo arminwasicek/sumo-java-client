@@ -18,6 +18,7 @@ public final class CreateMetricsJobResponse implements Iterable<Metric> {
   private ArrayList<Metric> metrics = new ArrayList<>();
   private DateTime startTime;
   private DateTime endTime;
+  private boolean emptyResponse = true;
 
   /**
    * Returns the Session ID of the search job.
@@ -179,6 +180,22 @@ public final class CreateMetricsJobResponse implements Iterable<Metric> {
       return maxLength;
     }
     return 0;
+  }
+
+  /**
+   * Checks, if the response had any results.
+   *
+   * @return Indicates wheter the the response holds any results.
+   */
+  public boolean isEmpty() {
+    return emptyResponse;
+  }
+
+  /**
+   * Ressets the empty flad of the response to indicate that there were results.
+   */
+  public void resetEmpty() {
+    this.emptyResponse = false;
   }
 
 }
